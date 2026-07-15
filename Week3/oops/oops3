@@ -1,0 +1,63 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+// Abstract class
+class Compartment {
+public:
+    virtual string notice() = 0;
+};
+
+class FirstClass : public Compartment {
+public:
+    string notice() {
+        return "First Class Compartment";
+    }
+};
+
+class Ladies : public Compartment {
+public:
+    string notice() {
+        return "Ladies Compartment";
+    }
+};
+
+class General : public Compartment {
+public:
+    string notice() {
+        return "General Compartment";
+    }
+};
+
+class Luggage : public Compartment {
+public:
+    string notice() {
+        return "Luggage Compartment";
+    }
+};
+
+
+int main() {
+    srand(time(0));
+
+    Compartment* c[10];
+
+    for(int i = 0; i < 10; i++) {
+
+        int n = rand() % 4 + 1;
+
+        if(n == 1)
+            c[i] = new FirstClass();
+        else if(n == 2)
+            c[i] = new Ladies();
+        else if(n == 3)
+            c[i] = new General();
+        else
+            c[i] = new Luggage();
+
+        cout << c[i]->notice() << endl;
+    }
+
+    return 0;
+}
